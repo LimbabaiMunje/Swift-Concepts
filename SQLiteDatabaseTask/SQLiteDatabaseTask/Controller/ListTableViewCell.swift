@@ -1,14 +1,14 @@
 //
-//  StudentTableViewCell.swift
-//  CoreData
+//  ListTableViewCell.swift
+//  SQLiteDatabaseTask
 //
-//  Created by Mac on 14/09/20.
+//  Created by Mac on 15/09/20.
 //  Copyright © 2020 Mac. All rights reserved.
 //
 
 import UIKit
 
-class StudentTableViewCell: UITableViewCell {
+class ListTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
