@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 150
     }
 }
 extension ViewController: UITableViewDataSource{
@@ -37,8 +37,8 @@ extension ViewController: UITableViewDataSource{
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ListTableViewCell
         let user = APIIntergrationManager.shareInstance.userList[indexPath.row]
         print(user)
-        cell.userId?.text = "\(user.id ?? 0)"
-        cell.title?.text = user.title
+        cell.userId?.text = "Id: \(user.id ?? 0)"
+        cell.title?.text = "Title: \(user.title ?? "")"
         return cell
     }
 }
@@ -47,7 +47,7 @@ extension ViewController : APIIntergrationManagerDelegate{
     //MARK:- Error Handling
     func didFailWithError(_ apiIntergrationManager: APIIntergrationManager, error: String?) {
          DispatchQueue.main.async {
-               let alert = UIAlertController(title: "Oops!",
+               let alert = UIAlertController(title: "Ohh!",
                                              message: error,
                                              preferredStyle: .alert)
                let cancelAction = UIAlertAction(title: "Close",

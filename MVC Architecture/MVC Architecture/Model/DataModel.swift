@@ -11,19 +11,20 @@ struct DataModel : Codable {
     let userId : Int?
     let id : Int?
     let title : String?
-    let completed : Bool?
+    let body : String?
 
     enum CodingKeys: String, CodingKey {
 
         case userId = "userId"
         case id = "id"
         case title = "title"
-        case completed = "completed"
+        case body = "body"
     }
-    init(userId: Int, id:Int, title: String, completed: Bool){
+
+    init(userId: Int, id:Int, title: String, body: String){
         self.userId = userId
         self.id =  id
-        self.completed = completed
+        self.body = body
         self.title = title
     }
     init(from decoder: Decoder) throws {
@@ -31,7 +32,7 @@ struct DataModel : Codable {
         userId = try values.decodeIfPresent(Int.self, forKey: .userId)
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         title = try values.decodeIfPresent(String.self, forKey: .title)
-        completed = try values.decodeIfPresent(Bool.self, forKey: .completed)
+        body = try values.decodeIfPresent(String.self, forKey: .body)
     }
 
 }

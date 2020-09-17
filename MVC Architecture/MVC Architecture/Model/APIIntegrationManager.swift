@@ -13,7 +13,7 @@ protocol APIIntergrationManagerDelegate {
 }
 
 class APIIntergrationManager {
-    let urlString = "https://jsonplaceholder.typicode.com/todos"
+    let urlString = "https://jsonplaceholder.typicode.com/posts"
     var delegate : APIIntergrationManagerDelegate?
     var vc : ViewController?
     static var shareInstance = APIIntergrationManager()
@@ -35,13 +35,13 @@ class APIIntergrationManager {
             }
             do{
                 let users = try JSONDecoder().decode([DataModel].self, from: safeData)
-                //                print(users)
+//                print(users)
                 DispatchQueue.main.async {
                     for user in users{
-                        let userData = DataModel(userId: user.userId ?? 0, id: user.id ?? 0, title: user.title ?? "", completed: user.completed ?? true)
+                        let userData = DataModel(userId: user.userId ?? 0, id: user.id ?? 0, title: user.title ?? "", body: user.body ?? "")
                         self.userList.append(userData)
                         self.vc?.tableView.reloadData()
-                        //                        print(self.userList)
+//                        print(self.userList)
                     }
                 }
             }
@@ -52,8 +52,8 @@ class APIIntergrationManager {
     }
     
     func performPostURLRequest(_ userData: DataModel) {
-        if let url = URL(string: "https://jsonplaceholder.typicode.com/todos"){
-            let parameter = DataModel(userId: userData.userId ?? 0, id: userData.id ?? 0, title: userData.title ?? "", completed: userData.completed ?? true)
+        if let url = URL(string: "https://jsonplaceholder.typicode.com/posts"){
+            let parameter = DataModel(userId: userData.userId ?? 0, id: userData.id ?? 0, title: userData.title ?? "", body: userData.body ?? "")
             var request = URLRequest(url: url)
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpMethod = "POST"
